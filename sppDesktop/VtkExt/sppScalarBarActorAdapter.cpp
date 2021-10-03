@@ -1,0 +1,3 @@
+#define __COMPILING_sppScalarBarActorAdapter_CPP__
+#include "sppScalarBarActorAdapter.h"
+#undef __COMPILING_sppScalarBarActorAdapter_CPP__

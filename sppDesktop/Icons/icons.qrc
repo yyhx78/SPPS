@@ -1,0 +1,32 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource prefix="/Icons">
+    <!-- Typical file operations. -->
+    <file>fileopen.png</file>
+    <file>filesave.png</file>
+    <file>print.png</file>
+
+    <!-- Help -->
+    <file>help.png</file>
+    <!-- Animation -->
+    <file>pqVcrBack16.png</file>
+    <file>pqVcrBack24.png</file>
+    <file>pqVcrBack32.png</file>
+    <file>pqVcrFirst16.png</file>
+    <file>pqVcrFirst24.png</file>
+    <file>pqVcrFirst32.png</file>
+    <file>pqVcrForward16.png</file>
+    <file>pqVcrForward24.png</file>
+    <file>pqVcrForward32.png</file>
+    <file>pqVcrLast16.png</file>
+    <file>pqVcrLast24.png</file>
+    <file>pqVcrLast32.png</file>
+    <file>pqVcrPlay16.png</file>
+    <file>pqVcrPlay24.png</file>
+    <file>pqVcrPlay32.png</file>
+    <file>pqVcrPause16.png</file>
+    <file>pqVcrPause24.png</file>
+    <file>pqVcrPause32.png</file>
+    <file>pqVcrLoop24.png</file>
+  </qresource>
+</RCC>

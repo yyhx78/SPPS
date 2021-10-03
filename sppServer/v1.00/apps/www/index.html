@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<!--
+	files are copied from https://unpkg.com/react@16.13.1/umd/react.production.min.js
+    <script src="js/react/react.development.js"></script>
+    <script src="js/react/react-dom.development.js"></script>
+	-->
+    <script src="js/react/react.production.min.js"></script>
+    <script src="js/react/react-dom.production.min.js"></script>
+		<style>				
+
+	.dlg_header {
+		padding: 10px;
+		cursor: move;
+		z-index: 10;
+		background-color: #2196F3;
+		color: #fff;
+	}
+
+	.custom-context{
+        border: solid 1px #ccc;
+        display: inline-block;
+        margin: 5px;
+        background: #FFF;
+        color: #000;
+        font-family: sans-serif;
+        cursor: pointer;
+        font-size: 12px;
+      }
+      .custom-context-item{
+        border-bottom: dotted 1px #ccc;
+        padding: 5px 25px;
+      }
+      .custom-context-item-last{
+        padding: 5px 25px;
+      }
+
+		</style>
+				
+	<head>
+		<title>yyhx78-CFD Results Viewer</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="apple-touch-icon" href="js/xhxJS/images/icon.png">
+		<link rel="shortcut icon" href="../files/favicon.ico" />
+		<!-- WebXR Device API (For Chrome M76+), expires 09/09/2019 -->
+		<meta http-equiv="origin-trial" content="Ai1/G787sugfmWtk1xQExa8N6OqwDsJyNn+OwpA1J4PozR1lixRYIQ4Tmp00vrGWS8FQQ2iDyqjwaewrOfYvPAUAAABTeyJvcmlnaW4iOiJodHRwczovL3RocmVlanMub3JnOjQ0MyIsImZlYXR1cmUiOiJXZWJYUkRldmljZU03NiIsImV4cGlyeSI6MTU2ODAyMzQ3OH0=">
+	</head>
+	<body ontouchstart="">
+		<div class="container">
+			<canvas id="canvas"></canvas>
+			<canvas id="text"></canvas>
+		</div>
+
+		<div id="divCustomContext"></div>
+		<div id="divCuttingPlane"></div>
+		<div id="divDisplayOptions"></div>
+		<div id="divOpenCase"></div>
+		<div id="divSelectRlt"></div>
+		<div id="divMenuButtons"></div>
+		
+		<script src="js/react/xhxDialogs.js"></script>
+		<script src="js/react/xhxCustomContext.js"></script>
+				
+		<link rel="stylesheet" href="js/xhxJS/css/main.css">
+		<link rel="stylesheet" id="theme" href="js/xhxJS/css/light.css">
+
+		<script src="js/3JS/build/three.min.js"></script>
+
+		<script src="js/3JS/js/controls/EditorControls.js"></script>
+		<script src="js/3JS/js/controls/TransformControls.js"></script>
+
+		<script src="js/3JS/js/renderers/RaytracingRenderer.js"></script>
+		<script src="js/3JS/js/renderers/SoftwareRenderer.js"></script>
+		<script src="js/3JS/js/renderers/SVGRenderer.js"></script>
+
+		<script src="js/xhxJS/libs/system.min.js"></script>
+		<script src="js/xhxJS/libs/jsonlint.js"></script>
+		<script src="js/xhxJS/libs/glslprep.min.js"></script>
+
+		<script src="js/xhxJS/libs/signals.min.js"></script>
+		<script src="js/xhxJS/libs/ui.js"></script>
+		<script src="js/xhxJS/libs/ui.three.js"></script>
+
+		<script src="js/xhxJS/libs/html2canvas.js"></script>
+		<script src="js/xhxJS/libs/three.html.js"></script>
+
+		<script src="js/xhxJS/libs/app.js"></script>
+
+		<script src="js/xhxJS/Editor.js"></script>
+		<script src="js/xhxJS/Config.js"></script>
+		<script src="js/xhxJS/Loader.js"></script>
+		<script src="js/xhxJS/Viewport.js"></script>
+
+		<script src="js/xhxJS/Command.js"></script>
+		<script src="js/xhxJS/commands/AddObjectCommand.js"></script>
+		<script src="js/xhxJS/commands/RemoveObjectCommand.js"></script>
+		<script src="js/xhxJS/commands/SetPositionCommand.js"></script>
+		<script src="js/xhxJS/commands/SetRotationCommand.js"></script>
+		<script src="js/xhxJS/commands/SetScaleCommand.js"></script>
+		<script src="js/xhxJS/commands/SetValueCommand.js"></script>
+		<script src="js/xhxJS/commands/SetUuidCommand.js"></script>
+		<script src="js/xhxJS/commands/SetGeometryCommand.js"></script>
+		<script src="js/xhxJS/commands/MultiCmdsCommand.js"></script>
+		<script src="js/xhxJS/commands/AddScriptCommand.js"></script>
+		<script src="js/xhxJS/commands/RemoveScriptCommand.js"></script>
+		<script src="js/xhxJS/commands/SetScriptValueCommand.js"></script>
+		<script src="js/xhxJS/commands/SetSceneCommand.js"></script>
+		<script src="js/xhxJS/Init.js"></script>
+
+		<script src="js/xhxJS/yyhx78/LutInOld3JS.js"></script>
+		<script src="js/xhxJS/yyhx78/xhxView.js"></script>
+		<script src="js/xhxJS/yyhx78/xhxLoader.js"></script>
+		<script src="js/xhxJS/yyhx78/shaders.js"></script>
+		<script src="js/xhxJS/yyhx78/xyzGizmo.js"></script>
+		<script src="js/xhxJS/yyhx78/xhxColorBar.js"></script>
+		<script src="js/xhxJS/yyhx78/gnomeCtrl.js"></script>
+		<script src="js/xhxJS/yyhx78/xhxPicker.js"></script>
+		<script src="js/xhxJS/yyhx78/fonts/helvetiker_regular.typeface.js"></script>
+
+		<script src="js/lib/STLLoader.js"></script>
+
+		<script>
+
+			//global
+			var modeName = "openfoam"
+			var IsInMode = function(nm) {
+				return (nm == modeName);
+			}
+
+			XHX.font = 	new THREE.Font( jsFont );
+
+			init();
+
+			//
+
+			document.addEventListener( 'dragover', function ( event ) {
+
+				event.preventDefault();
+				event.dataTransfer.dropEffect = 'copy';
+
+			}, false );
+
+			document.addEventListener( 'drop', function ( event ) {
+
+				event.preventDefault();
+
+				editor.loader.loadFiles( event.dataTransfer.files );
+
+			}, false );
+
+			function onWindowResize( event ) {
+
+				editor.signals.windowResize.dispatch();
+//				adjustBtnPosition(btns, editor.camera);
+
+			}
+
+			window.addEventListener( 'resize', onWindowResize, false );
+
+			onWindowResize();
+
+			//
+
+			var isLoadingFromHash = false;
+			var hash = window.location.hash;
+
+			if ( hash.substr( 1, 5 ) === 'file=' ) {
+
+				var file = hash.substr( 6 );
+
+				if ( confirm( 'Any unsaved data will be lost. Are you sure?' ) ) {
+
+					var loader = new THREE.FileLoader();
+					loader.crossOrigin = '';
+					loader.load( file, function ( text ) {
+
+						editor.clear();
+						editor.fromJSON( JSON.parse( text ) );
+
+					} );
+
+					isLoadingFromHash = true;
+
+				}
+
+			}
+
+		</script>
+	</body>
+</html>

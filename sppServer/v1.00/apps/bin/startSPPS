@@ -1,0 +1,9 @@
+#!/bin/bash
+
+doc_root=/home/yyhx78/www
+dat_folder=/home/yyhx78/cases
+
+source /opt/openfoam7/etc/bashrc #openfoam environment variables must be set before the server starts.
+
+sppServer "0.0.0.0" "7777" $doc_root $dat_folder
+
