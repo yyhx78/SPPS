@@ -31,7 +31,7 @@
 using namespace SPP;
 
 static const std::string MAPPED_FOLDER = "/home/yyhx78/cases";
-static const std::string containerName = "yyhx78_spp_server";
+static const std::string containerName = "yyhx78_sppServer";
 static const std::string imageName("yyhx78/spps");
 static const std::string imageVersion("1.00");
 static std::string m_urlRoot;
